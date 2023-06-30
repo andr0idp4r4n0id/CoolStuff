@@ -1,0 +1,13 @@
+id: section-subdomain-takeover-detection
+info:
+  name: section.io subdomain takeover detection workflow
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Detects subdomain takeover related to section.io service  
+  reference: xxxxx
+  tags: takeovers
+
+workflows:
+  - template: section_fingerprint.yaml
+    subtemplates:
+      - template: section_takeover_nxdomain_http.yaml

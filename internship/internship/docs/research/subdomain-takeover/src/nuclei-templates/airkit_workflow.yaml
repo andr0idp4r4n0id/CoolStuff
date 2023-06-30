@@ -1,0 +1,13 @@
+id: airkit-subdomain-takeover-airkit-workflow
+info:
+  name: airkit subdomain takeover airkit workflow
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for subdomain takeovers for the airkit service
+  reference: xxxxx
+  tags: takeovers
+
+workflows:
+  - template: airkit.yaml
+    subtemplates:
+      - template: airkit2.yaml

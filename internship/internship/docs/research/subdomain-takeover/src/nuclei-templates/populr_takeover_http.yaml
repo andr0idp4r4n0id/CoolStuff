@@ -1,0 +1,27 @@
+id: populr-subdomain-takeover
+info:
+  name: populr subdomain takeover detection template
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for populr fingerprints to detect subdomain takeover
+  reference: xxxxx
+  tags: takeovers
+
+http:
+  - method: GET
+    path:
+      - "http://{{Host}}"
+      - "https://{{Host}}"
+      - "http://{{cname_subdomain1}}"
+      - "https://{{cname_subdomain1}}"
+      - "http://{{cname_subdomain2}}"
+      - "https://{{cname_subdomain2}}"
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - ".+That page appears to be missing. Check your URL.+"
+        part: body
+      - type: status
+        status:
+          - 404

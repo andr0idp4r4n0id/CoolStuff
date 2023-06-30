@@ -1,0 +1,37 @@
+id: section-subdomain-takeover
+info:
+  name: section.io subdomain takeover detection template
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for section.io to detect subdomain takeover
+  reference: xxxxx
+  tags: takeovers
+
+dns:
+  - name: "{{subdomain_c_section}}"
+    type: A
+    class: inet
+    recursion: true
+    matchers:
+      - type: word
+        words:
+          - "NXDOMAIN"
+
+http:
+  - method: GET
+    path:
+      - "http://{{Host}}"
+      - "https://{{Host}}"
+      - "http://{{cname_subdomain1}}"
+      - "https://{{cname_subdomain1}}"
+      - "http://{{cname_subdomain2}}"
+      - "https://{{cname_subdomain2}}"
+    matchers-condition: and
+    matchers:
+      - type: regex
+        regex:
+          - ".+Section PoP.+"
+        part: body
+      - type: status
+        status:
+          - 409
