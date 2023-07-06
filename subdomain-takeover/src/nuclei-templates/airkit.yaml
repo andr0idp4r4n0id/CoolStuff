@@ -1,0 +1,18 @@
+id: airkit-subdomain-takeover-cname-fingerprint
+info:
+  name: airkit cname fingerprint detection template
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for airkit cname fingerprint
+  reference: xxxxx
+  tags: takeovers
+
+dns:
+  - name: "{{FQDN}}"
+    type: CNAME
+    class: inet
+    recursion: true
+    matchers:
+      - type: regex
+        regex:
+          - "IN\tCNAME\tapp\\.airkit(\\.com|\\.eu)"

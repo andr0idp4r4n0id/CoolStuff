@@ -1,0 +1,17 @@
+id: airkit-subdomain-takeover-http-fingerprint
+info:
+  name: airkit subdomain takeover for http detection template
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for airkit http fingerprint to detect subdomain takeover.
+  reference: xxxxx
+  tags: takeovers
+
+requests:
+  - method: GET
+    path: 
+      - "{{RootURL}}"
+    matchers:
+    -   type: regex
+        regex:
+          - ".+404 Not Found.+"

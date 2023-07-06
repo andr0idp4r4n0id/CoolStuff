@@ -1,0 +1,13 @@
+id: populr-subdomain-takeover-detection
+info:
+  name: populr subdomain takeover detection workflow
+  author: andr0idp4r4n0id
+  severity: medium
+  description: Detects subdomain takeover related to populr.io service  
+  reference: xxxxx
+  tags: takeovers
+
+workflows:
+  - template: populr_fingerprint.yaml
+    subtemplates:
+      - template: populr_takeover_http.yaml
