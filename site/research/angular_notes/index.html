@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Angular - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Angular";
+        var mkdocs_page_input_path = "research/angular_notes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Angular</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#fundamental-concepts">Fundamental Concepts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#components">Components</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-binding">Data binding</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Research &raquo;</li>
+      <li>Angular</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="angular">Angular</h1>
+<p>Angular - Plataform for building single-page client applications with HTML and Typescript</p>
+<h2 id="fundamental-concepts">Fundamental Concepts</h2>
+<p>Angular Componenents are organized into NgModules;
+An angular app is a set of NgModules;
+An app has a root module;
+Views are sets of screen elements that Angular can choose among and modify according to program logic;
+Services provide specific functionality not directly related to views;
+Modules, componenets and services are classes that use decorators;
+Decorators mark class type and provide metadata that tells angular how to use them;
+Metadata for a component class associates it with a template that defines a view;
+A template combines ordinary HTML with Angular directives and binding markups, allowing angular to modify HTML before renderization</p>
+<h2 id="modules">Modules</h2>
+<p>Declares compilation context for a set of componenets that is dedicated to an application domain, workflow or set of capabilities;
+Can relate its componenets with code, such as services, to form functional units;
+Modules can import functionality from other modules;</p>
+<h2 id="components">Components</h2>
+<p>The root componenent connects a componenent hierarchy with the DOM;
+Each componenet defines a class that contains application data and logic, associated with an HTML template that defines a view to be displayed in a target environment;</p>
+<h2 id="templates">Templates</h2>
+<p>Combine HTML and Angular markup which modify HTML elements before displayed.</p>
+<h2 id="data-binding">Data binding</h2>
+<p>Event binding responds to user input;
+Property Binding interpolate values that are computed from application data into HTML;</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../quiz/SecurityChampion/" class="btn btn-neutral float-left" title="QUIZ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dangling%20markup/" class="btn btn-neutral float-right" title="Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../quiz/SecurityChampion/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../dangling%20markup/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

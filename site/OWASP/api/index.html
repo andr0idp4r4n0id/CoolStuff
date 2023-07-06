@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Api - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Api";
+        var mkdocs_page_input_path = "OWASP/api.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Api</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#object">Object</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data">Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resources">Resources</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rate-limiting">Rate-Limiting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function">Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#owasp-api-top-10">OWASP API TOP 10</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vulnerable">Vulnerable?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#char49-tips">Char49 TIPS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#10-insufficent-logging-monitoring">10 - Insufficent Logging &amp; Monitoring</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-improper-assets-management">9 - Improper Assets Management.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-injection">8 - Injection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-security-misconfigurations">7 - Security Misconfigurations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-mass-assignment">6 - Mass Assignment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-broken-function-level-authorization">5 - Broken Function Level Authorization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-lack-of-resources-rate-limit">4 - Lack of Resources &amp; Rate-Limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-excessive-data-exposure">3 - Excessive Data Exposure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-broken-user-authentication">2 - Broken User Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1-broken-object-level-authorization">1 - Broken Object Level Authorization</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../SAML/saml_notes/">SAML</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>OWASP &raquo;</li>
+      <li>Api</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="owasp-top-10-api">OWASP TOP 10 API</h1>
+<p>Here lay my notes on the owasp top 10 api.</p>
+<h2 id="definitions">Definitions</h2>
+<h3 id="object">Object</h3>
+<p>It describes information about a particular thing. A user object  might describe roles, names, usernames. A json object describes key-value pairs of information.</p>
+<h3 id="authentication">Authentication</h3>
+<p>It's the process of proving who you said you were when you registered yourself . Tipically done by a username and password.</p>
+<h3 id="data">Data</h3>
+<p>It's what information is made up of, data by itself isn't useful. When combined, it becomes information and is then useful.</p>
+<h3 id="resources">Resources</h3>
+<p>It's the intellectual/physical property of a certain thing, which can be used with a given purpose or not. In the context of web application, a resource can be a scroll page with articles.</p>
+<h3 id="rate-limiting">Rate-Limiting</h3>
+<p>It's how you throttle requests, by blocking them when you receive too many.</p>
+<h3 id="function">Function</h3>
+<p>It does a particular action. Its an operation</p>
+<h2 id="owasp-api-top-10">OWASP API TOP 10</h2>
+<ol>
+<li>
+<p>Broken Object Level Authorization - It happens when you are able to access an object which you should not have access to. There is nothing wrong with manipulating the id of an object, the problem arises when a given user has the permissions to access an object he should not have permissions to access. Eg: <code>/shop/user?id=1</code></p>
+</li>
+<li>
+<p>Broken User Authentication - Its any operation over authentication that allows an attacker to login as someone else. Eg: <code>OR 1=1 --</code></p>
+</li>
+<li>
+<p>Excessive Data Exposure - Its the visualization of an object which is to sensitive to show but is perceivable by the users anyhow. Eg: <code>password</code> key-value pair in JSON body.</p>
+</li>
+<li>
+<p>Lack of Resources &amp; Rate Limiting - Its any operation that exceeds the maximum amount of resources a server can provide because there are no restrictions to how many the client can ask. Eg: <code>?limit=2000000</code></p>
+</li>
+<li>
+<p>Broken Function Level Authorization - Its any operation accessed by a user whose permissions should not allow him to access. Eg: <code>/admin/email?deleteEmailName=</code></p>
+</li>
+<li>
+<p>Mass Assignment - Its legitimate api calls that an attacker shouldn't have access to in any given endpoint. A user can set himself to admin, if an object in the backend exists that checks if the property admin is true, and the attacker sets it to true via the API. Eg: <code>"admin":true</code></p>
+</li>
+<li>
+<p>Security Misconfiguration - Its anything that is misconfigured to allow an attacker access to sensitive information or do sensitive operations. Eg: <code>redis</code>, <code>DELETE</code>  on unporposeful endpoint</p>
+</li>
+<li>
+<p>Injection - Its anything that allows code or commands to be injected in a particular sink such as system in python, eval in js/php. Eg: <code>".phpinfo()."</code></p>
+</li>
+<li>
+<p>Improper-Assets-Management - Developers can't rewrite an API because they included new functionality code to the frontend, so they include new versions of their API and new endpoints towards those versions. An attacker can simply change the version of the api by changing the endpoint (v3 =&gt; v2), which could allow him access to older less secure features. Eg: <code>/v2/login/</code> =&gt; <code>/v1/login</code></p>
+</li>
+<li>
+<p>Insufficent Logging &amp; Monitoring - The application does not log anything or few things and that means it won't be aware of any actions uninteded or intended, malicious or unmalicious that the client does.</p>
+</li>
+</ol>
+<h2 id="vulnerable">Vulnerable?</h2>
+<ol>
+<li>
+<p>If a user can access objects he does not have permissions to access, yes.</p>
+</li>
+<li>
+<p>If there's a way a user can login as another user by exploiting a particular authentication vulnerability such as NoSQLi, SQLi, credential stuffing, then yes.</p>
+</li>
+<li>
+<p>If an Object contains sensitive info that should not be shown and a user is able to see it, then yes.</p>
+</li>
+<li>
+<p>If there is no restriction to the ammount of resources a user can ask, then yes.</p>
+</li>
+<li>
+<p>If a user is able to perform an operation he should not have access to, then yes.</p>
+</li>
+<li>
+<p>If the user is able to legitemately manipulate the API to do things he should not do.</p>
+</li>
+<li>
+<p>If there is somekind of misconfiguration that allows user access to sensitive information, then yes.</p>
+</li>
+<li>
+<p>If user input goes to a sink which allows codes or commands to be injected, then yes.</p>
+</li>
+<li>
+<p>If there's an older version of the api that an attacker can shift to, then yes.</p>
+</li>
+<li>
+<p>If the application does not log or logs very few things, then yes.</p>
+</li>
+</ol>
+<h2 id="char49-tips">Char49 TIPS</h2>
+<h3 id="10-insufficent-logging-monitoring">10 - Insufficent Logging &amp; Monitoring</h3>
+<p><strong>Notice the lack of headers, body - In fact, there is no useful information that seems to be logged.</strong></p>
+<h3 id="9-improper-assets-management">9 - Improper Assets Management.</h3>
+<p><strong>Remember old api endpoints don't necessarily have the same sub-endpoints.</strong></p>
+<h3 id="8-injection">8 - Injection</h3>
+<p><strong>Taking input directly to the terminal It is not the same as running a system function.</strong></p>
+<h3 id="7-security-misconfigurations">7 - Security Misconfigurations</h3>
+<p><strong>Disclosure of sensitive information can can result in mongodb database leak at port 27017, for example.</strong></p>
+<h3 id="6-mass-assignment">6 - Mass Assignment</h3>
+<p><strong>Can be used to bolster any type of privilege.</strong></p>
+<h3 id="5-broken-function-level-authorization">5 - Broken Function Level Authorization</h3>
+<p><strong>Operations that users aren't supposed to execute with their current authorization level</strong></p>
+<h3 id="4-lack-of-resources-rate-limit">4 - Lack of Resources &amp; Rate-Limit</h3>
+<p><strong>We can increase the limit value in the query string to increase stress on the server</strong></p>
+<h3 id="3-excessive-data-exposure">3 - Excessive Data Exposure</h3>
+<p><strong>Rule of thumb: If it's not rendered and is in output, it should be excessive data exposure</strong></p>
+<h3 id="2-broken-user-authentication">2 - Broken User Authentication</h3>
+<p><strong>There are various techniques, but no rate-limit will surely lead to full account takeover. Analyze responses</strong></p>
+<h3 id="1-broken-object-level-authorization">1 - Broken Object Level Authorization</h3>
+<p><strong>Notice the id change. We shouldn't have the authorization to see those, but we can see them</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../SAML/saml_notes/" class="btn btn-neutral float-right" title="SAML">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../SAML/saml_notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

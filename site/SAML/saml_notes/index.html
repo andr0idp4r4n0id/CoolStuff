@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>SAML - Internship Ramblings</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SAML";
+        var mkdocs_page_input_path = "SAML/saml_notes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Internship Ramblings
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OWASP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../OWASP/api/">Api</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SAML</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">SAML</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-it">What is it</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#flow">Flow</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#important">Important</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attackers-perspective">Attacker's Perspective</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exploiting">Exploiting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#damn-vulnerable-saml-application">Damn Vulnerable SAML Application</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scenarios">Scenarios</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#saml-raider">SAML Raider</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Audits</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/PoC/">Coverflex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../audits/neurowave/">NEUROWAVE, LDA</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ctfs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Capital ctf</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/capital-ctf/">Index</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Dvga</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ctfs/dvga/dvga/">Dvga</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Dvwss</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dvwss/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Goatlin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../goatlin/notes/">Goatlin Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/api_types/">Api types</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/http2/">Http2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/nosqli/">NoSQL</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../notes/sql/">SQL - Structured Query Language</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portswigger</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portswigger/labs/">PortSwigger labs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quiz</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quiz/SecurityChampion/">QUIZ</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Research</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/angular_notes/">Angular</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../research/dangling%20markup/">Evading CSP with DOM-based dangling markup (PortSwigger) - An alternative approach</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Subdomain takeover</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../research/subdomain-takeover/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Findings</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../research/subdomain-takeover/findings/security-advisory/">Security Advisory</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="#">Src</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="#">Commands</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/commands/commands/">Commands</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="#">Script</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../research/subdomain-takeover/src/script/">Index</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Techniques</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/interesting/">Techniques created by me (or not) uncommon in the wild</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/methodology/">A methodological checklist to logically deduce the steps needed to pentest a web app.</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../techniques/triggers/">Errors based/behaviour inferer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/notes/">Notes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Internship Ramblings</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>SAML &raquo;</li>
+      <li>SAML</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="saml">SAML</h1>
+<h2 id="what-is-it">What is it</h2>
+<p><strong>It allows access to multiple websites with only one set of login credentials</strong>. It's based on <strong>XML</strong>. The user is authenticated by sending his login credentials to an <strong>idP</strong> (identity provider), which responds with a saml request that is sent to the browser, and from there the saml request is sent and validated by the <strong>sp</strong>.</p>
+<h2 id="flow">Flow</h2>
+<ol>
+<li>user accesses sp which uses idp for authentication</li>
+<li>web app responds with a saml request</li>
+<li>browser forwards saml to the idp</li>
+<li>idp parses/authenticates the user</li>
+<li>idp sends request to browser again</li>
+<li>browser sends generated saml to sp</li>
+<li>if saml is verified, access is granted</li>
+</ol>
+<h3 id="important">Important</h3>
+<p><strong>I can hijack a user's session if I capture the token sent to the sp for validation</strong></p>
+<h2 id="attackers-perspective">Attacker's Perspective</h2>
+<p>Timestamp - <strong>Messages can be expired or not, and we can tamper with that.</strong></p>
+<p>Assertion unique ID - <strong>Only one session should be opened with the unique ID. If more than one is allowed, we can use the session at the same time the user operates it.</strong></p>
+<p>Self Signed Certificates - <strong>We can clone the original one or self sign our own</strong></p>
+<p>Missing signatures - <strong>Allow tampering with permissions in sp</strong></p>
+<p>SAML recipient differ - <strong>Allows an application user to login to other application. As an attacker this means compromising app A can lead to compromising app B.</strong></p>
+<pre><code>
+XSW - Behavior from multiple signatures/assertions
+
+XSW 1 - Unsigned copy of the response after signature
+
+XSW2 - Same but before signature
+
+XSW 3 - Copy of assertion before signature
+
+XSW 4 - Copy of assertion after signature
+
+XSW 5 - Change value of original assertion, add copy of original assertion without signature at the end of saml response.
+
+XSW 6 - Change value of original assertion, add copy of original assertion without signature after the original signature
+
+XWS 7 - Add extension block
+
+XSW 8 - Add object block.
+
+</code></pre>
+<h2 id="exploiting">Exploiting</h2>
+<p><strong>Change expiration</strong></p>
+<p><strong>Modify Parameters</strong></p>
+<p><strong>XSW</strong></p>
+<p><strong>Attempt to create a valid signature</strong></p>
+<h2 id="references">References</h2>
+<p>https://cwe.mitre.org/data/definitions/287.html</p>
+<p>https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/</p>
+<p>https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html</p>
+<h2 id="damn-vulnerable-saml-application">Damn Vulnerable SAML Application</h2>
+<p>The idp server runs at 127.0.0.1</p>
+<p>The sp server runs at 127.0.0.1:8000</p>
+<p>There's a single logout feature</p>
+<p>The application allows to change default security configurations like the message and assertion encryption/signing</p>
+<p>The application has the following exploit scenarios: escalate privileges, employ XSW, use a self sign certificate, remove signing, change timestamps, XXE and XST</p>
+<p>This can all be done as according to any other SAML configuration via a burp extension: SAML Raider.</p>
+<h3 id="scenarios">Scenarios</h3>
+<ul>
+<li>No security configuration</li>
+<li>Valid Assertions/Messages</li>
+<li>Messages/Assertions signed</li>
+<li>
+<p>Messages/Assertions signed and valid</p>
+</li>
+<li>
+<p>No security configuration:</p>
+</li>
+</ul>
+<p>Without security configuration, it is possible to edit the saml response in anyway we can. To escalate privileges, we can simply change the <code>memberOf</code> attribute in the <code>SAML</code> response to <code>administrators</code>.</p>
+<p>After accessing the <code>complaints</code> tab, the gui should allow us to delete users.</p>
+<ol>
+<li>Valid Assertions/Messages:</li>
+</ol>
+<p>The configuration wants valid assertions and messages, but only checks if they are valid if a signature exists. This means removing the signature permits editing the assertions and escalating our privileges.</p>
+<p>After removing the signature in <code>SAML Raider</code>, change the <code>memberOf</code> attribute to <code>administrators</code>. Access the <code>complaints</code> tab and the GUI should allow deletion of complaints.</p>
+<ol>
+<li>Messages/Assertions Signed</li>
+</ol>
+<p>In this situation, the application checks that the <code>SAML</code> is signed, but it does not validate the assertion. An attacker can edit the assertion and change the group membership by editing the <code>memberOf</code> attribute to <code>administrators</code>.</p>
+<ol>
+<li>Messages/Assertions signed and valid.</li>
+</ol>
+<p>In this application, the only bypass is by leveraging <code>CVE-2017-11427</code>. This CVE plays with the parsing of the XML to trick the application into thinking we did not alter anything in the SAML response, but in fact we did. We can do this by adding a comment to the <code>memberOf</code> attribute after administrators:</p>
+<p><code>administrators&lt;!--butnot--&gt;</code></p>
+<h2 id="saml-raider">SAML Raider</h2>
+<p>It automates XSW attacks, attempts XXE and XST, allows inserting custom self signed certificates and remove signings.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../OWASP/api/" class="btn btn-neutral float-left" title="Api"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../audits/PoC/" class="btn btn-neutral float-right" title="Coverflex">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../OWASP/api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../audits/PoC/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
